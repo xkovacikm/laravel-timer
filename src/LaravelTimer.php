@@ -5,6 +5,8 @@ namespace Astatroth\LaravelTimer;
 class LaravelTimer
 {
 
+    const DEFAULT_NAME = "default";
+
     protected $timers;
 
     /**
@@ -12,7 +14,7 @@ class LaravelTimer
      *
      * @param $name
      */
-    public function timerStart($name)
+    public function timerStart( $name = self::DEFAULT_NAME )
     {
         $this->timers[$name]['start'] = microtime(true);
         $this->timers[$name]['count'] = isset($this->timers[$name]['count']) ? ++$this->timers[$name]['count'] : 1;
@@ -24,7 +26,7 @@ class LaravelTimer
      * @param $name
      * @return float
      */
-    public function timerRead($name)
+    public function timerRead( $name = self::DEFAULT_NAME )
     {
         if (isset($this->timers[$name]['start'])) {
             $stop = microtime(true);
@@ -40,7 +42,7 @@ class LaravelTimer
         return $this->timers[$name]['time'];
     }
 
-    public function timerStop($name)
+    public function timerStop( $name = self::DEFAULT_NAME )
     {
         if (isset($this->timers[$name]['start'])) {
             $stop = microtime(true);

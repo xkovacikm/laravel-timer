@@ -1,11 +1,15 @@
 {
-  "name": "astatroth/laravel-timer",
+  "name": "xkovacikm/laravel-timer",
   "description": "A small tool to measure operations execution time.",
   "license": "MIT",
   "authors": [
     {
       "name": "Astatroth",
       "email": "astatroth@gmail.com"
+    },
+    {
+      "name": "xkovacikm",
+      "email": "kovacik.dev@gmail.com"
     }
   ],
   "minimum-stability": "dev",
@@ -14,8 +18,17 @@
   },
   "autoload": {
     "psr-4": {
-      "App\\": "app/",
       "Astatroth\\LaravelTimer\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Astatroth\\LaravelTimer\\LaravelTimerServiceProvider"
+      ],
+      "aliases": {
+        "Timer": "Astatroth\\LaravelTimer\\Timer"
+      }
     }
   }
 }
