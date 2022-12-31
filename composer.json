@@ -19,7 +19,10 @@
   "autoload": {
     "psr-4": {
       "Astatroth\\LaravelTimer\\": "src/"
-    }
+    },
+    "files": [
+      "src/functions.php"
+    ]
   },
   "extra": {
     "laravel": {
