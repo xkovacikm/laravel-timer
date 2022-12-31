@@ -7,32 +7,28 @@ Also, timer methods don't require parameter.
 
 # Installation
 ```
-composer require "astatroth/laravel-timer":"dev-master"
+composer require xkovacikm/laravel-timer
 ```
 
 # Usage
+
+Start the Timer with:
 ```php
-use Astatroth\LaravelTimer\Timer;
-```
-Just start the Timer with
-```php
-Timer::timerStart();
+tstart();
 //or named one.
-Timer::timerStart('name');
+tstart('name');
 ```
 >If you start and stop the same timer multiple times, the measured intervals will be accumulated.
 
 Reading specified timer current time:
 ```php
-Timer::timerRead();
+tread();
 //or named one.
-Timer::timerRead('name');
+tread('name');
 ```
 Stop the timer:
 ```php
-Timer::timerStop();
+tstop();
 //or named one.
-Timer::timerStop('name');
+tstop('name');
 ```
-
-Have fun! ;)
