@@ -15,20 +15,12 @@ composer require xkovacikm/laravel-timer
 Start the Timer with:
 ```php
 tstart();
-//or named one.
-tstart('name');
 ```
->If you start and stop the same timer multiple times, the measured intervals will be accumulated.
-
-Reading specified timer current time:
+Dumps timer current time:
 ```php
 tread();
-//or named one.
-tread('name');
 ```
-Stop the timer:
+Dumps timer and die:
 ```php
 tstop();
-//or named one.
-tstop('name');
 ```

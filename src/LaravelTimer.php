@@ -5,59 +5,47 @@ namespace Astatroth\LaravelTimer;
 class LaravelTimer
 {
 
-    const DEFAULT_NAME = "default";
-
-    protected $timers;
+    /**
+     * @var float
+     */
+    protected $start = 0;
 
     /**
-     * Sets the timer with the specified name.
-     *
-     * @param $name
+     * @var float
      */
-    public function timerStart( $name = self::DEFAULT_NAME )
+    protected $actual = 0;
+
+    /**
+    protected $history;
+
+    /**
+     * Sets the timer
+     */
+    public function timerStart()
     {
-        $this->timers[$name]['start'] = microtime(true);
-        $this->timers[$name]['count'] = isset($this->timers[$name]['count']) ? ++$this->timers[$name]['count'] : 1;
+        $this->start = microtime(true);
     }
 
     /**
-     * Reads the timer current time without stopping it.
+     * Dumps the timer current time without stopping it.
      *
-     * @param $name
      * @return float
      */
-    public function timerRead( $name = self::DEFAULT_NAME )
+    public function timerRead( )
     {
-        if (isset($this->timers[$name]['start'])) {
-            $stop = microtime(true);
-            $diff = round(($stop - $this->timers[$name]['start']) * 1000, 2);
-
-            if (isset($this->timers[$name]['time'])) {
-                $diff += $this->timers[$name]['time'];
-            }
-
-            return $diff;
-        }
-
-        return $this->timers[$name]['time'];
+        $diff = $this->setActualAndGetDiff();
+        dump( $diff );
     }
 
-    public function timerStop( $name = self::DEFAULT_NAME )
+    public function timerStop()
     {
-        if (isset($this->timers[$name]['start'])) {
-            $stop = microtime(true);
-            $diff = round(($stop - $this->timers[$name]['start']) * 1000, 2);
+        $diff = $this->setActualAndGetDiff();
+        dd( $diff );
+    }
 
-            if (isset($this->timers[$name]['time'])) {
-                $this->timers[$name]['time'] += $diff;
-            } else {
-                $this->timers[$name]['time']  = $diff;
-            }
-
-            unset($this->timers[$name]['start']);
-        }
-
-        return $this->timers[$name];
+    protected function setActualAndGetDiff(){
+        $this->actual = microtime(true );
+        return $this->actual - $this->start;
     }
 
 }
